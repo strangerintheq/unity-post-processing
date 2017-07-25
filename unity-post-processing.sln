@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "raymarch", "Assembly-CSharp.csproj", "{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unity-post-processing", "Assembly-CSharp.csproj", "{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

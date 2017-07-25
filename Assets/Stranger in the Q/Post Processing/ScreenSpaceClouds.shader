@@ -13,15 +13,15 @@ Shader "StrangerintheQ/ScreenSpaceClouds" {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-
+			#pragma target 5.0
 			#include "UnityCG.cginc"
 
-			#define MOD3 float3(.16532,.17369,.15787)
+			#include "TextureNoise.cginc"
 
-			#include "Noise.cginc"
 
 			uniform sampler2D _CameraDepthTexture;
 			uniform sampler2D _MainTex;
+
 			uniform float4 _MainTex_TexelSize;
 
 			uniform float4x4 _CameraInvViewMatrix;
@@ -79,10 +79,10 @@ Shader "StrangerintheQ/ScreenSpaceClouds" {
 
 			float CloudsFBM(float3 p) {
 			    float f = 0.0;
-			    float octave = 0.9;
-			    while (octave > 0.01) {
+			    float octave = 1.0;
+			    while (octave > 0.1) {
 			    	octave /= 2.0;
-			        f += octave * Noise(p); 
+			        f += octave * Noise3(p); 
 			        p = p * (3.0 + octave); 
 			    }
 			    return f;
@@ -91,7 +91,7 @@ Shader "StrangerintheQ/ScreenSpaceClouds" {
 			float MapClouds(float3 p, float size, float speed){
 				p /= size;
 			    p += _Time.y / 100. * speed;
-			    if (p.x*p.x + p.z*p.z < 1000.)
+			    if (p.x*p.x + p.z*p.z < 100.)
 					return CloudsFBM(p) - cloudy - .4;
 				else
 					return 0.0;
@@ -145,7 +145,7 @@ Shader "StrangerintheQ/ScreenSpaceClouds" {
 			    return sky;
 			}
 
-			half4 frag (v2f i) : SV_Target { 
+			float4 frag (v2f i) : SV_Target { 
 
 				float3 rayDirection = normalize(i.ray.xyz);
 
@@ -163,9 +163,9 @@ Shader "StrangerintheQ/ScreenSpaceClouds" {
 				float3 color = tex2D(_MainTex, i.uv);
 			    if ( rayDirection.y>0. && depthValue == 1.0) {
 			    	color = CreateClouds(rayDirection, cameraPosition, color, 5000, 6000, 2, 1000, 44);
-			    	color = CreateClouds(rayDirection, cameraPosition, color, 1000, 2000, 1, 1000, 44);
+			    	//color = CreateClouds(rayDirection, cameraPosition, color, 1000, 2000, 1, 1000, 44);
 			    } 
-				return half4(color, 1.0);
+				return float4(color, 1.0);
 			}
 
 			ENDCG

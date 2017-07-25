@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SunLight: {fileID: 349732116}
+  noise: {fileID: 2800000, guid: ec1cbffc122e5b54d87a83713eec842a, type: 3}
   _EffectShader: {fileID: 4800000, guid: 27f3835a0cdc3dd4fb0fb70d6a3f4de9, type: 3}
 --- !u!1 &1322271873
 GameObject:

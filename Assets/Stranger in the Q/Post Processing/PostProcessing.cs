@@ -6,6 +6,7 @@
 public class PostProcessing : SceneViewFilter {
 	
     public Transform SunLight;
+	public Texture noise;
 
     [SerializeField]
     private Shader _EffectShader;
@@ -15,6 +16,7 @@ public class PostProcessing : SceneViewFilter {
             if (!_EffectMaterial && _EffectShader) {
                 _EffectMaterial = new Material(_EffectShader);
                 _EffectMaterial.hideFlags = HideFlags.HideAndDontSave;
+				_EffectMaterial.SetTexture ("_NoiseTex", noise);
             }
             return _EffectMaterial;
         }
@@ -68,8 +70,7 @@ public class PostProcessing : SceneViewFilter {
 			EffectMaterial.SetMatrix ("_FrustumCornersES", GetFrustumCorners (CurrentCamera));
 			EffectMaterial.SetMatrix ("_CameraInvViewMatrix", CurrentCamera.cameraToWorldMatrix);
 			EffectMaterial.SetVector ("_CameraWS", CurrentCamera.transform.position);
-			EffectMaterial.SetVector ("_FromCorner", CurrentCamera.transform.position);
-			EffectMaterial.SetVector ("_ToCorner", CurrentCamera.transform.position);
+
 			CustomGraphicsBlit (source, destination, EffectMaterial, 0);
 		} else {
 			Graphics.Blit(source, destination); // do nothing

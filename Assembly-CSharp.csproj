@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6781288B-A3B7-6A24-8E47-3FE2C8DEF8BC}</ProjectGuid>
+    <ProjectGuid>{62D8E2C1-D243-5944-FFC7-F1972BB83B0F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,28 +51,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Example\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
-     <Compile Include="Assets\Example\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
-     <Compile Include="Assets\Example\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
-     <Compile Include="Assets\Example\Standard Assets\Utility\CurveControlledBob.cs" />
-     <Compile Include="Assets\Example\Standard Assets\Utility\FOVKick.cs" />
-     <Compile Include="Assets\Example\Standard Assets\Utility\LerpControlledBob.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\Utility\CurveControlledBob.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\Utility\FOVKick.cs" />
+     <Compile Include="Assets\Examples\Standard Assets\Utility\LerpControlledBob.cs" />
      <Compile Include="Assets\Stranger in the Q\Post Processing\PostProcessing.cs" />
      <Compile Include="Assets\Stranger in the Q\Post Processing\SceneViewFilter.cs" />
      <None Include="Assets\Stranger in the Q\Post Processing\DistanceFunctions.cginc" />
      <None Include="Assets\Stranger in the Q\Post Processing\DistanceBooleanOperations.cginc" />
-     <None Include="Assets\Stranger in the Q\Post Processing\Noise.cginc" />
+     <None Include="Assets\Stranger in the Q\Post Processing\TextureNoise.cginc" />
      <None Include="Assets\Stranger in the Q\Post Processing\ScreenSpaceClouds.shader" />
+     <None Include="Assets\Stranger in the Q\Post Processing\MathNoise.cginc" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -94,10 +95,6 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{71B38C24-2A8D-B03A-F7D0-B67358EC837B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
