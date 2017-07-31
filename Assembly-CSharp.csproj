@@ -67,13 +67,17 @@
      <Compile Include="Assets\Examples\Standard Assets\Utility\CurveControlledBob.cs" />
      <Compile Include="Assets\Examples\Standard Assets\Utility\FOVKick.cs" />
      <Compile Include="Assets\Examples\Standard Assets\Utility\LerpControlledBob.cs" />
-     <Compile Include="Assets\Stranger in the Q\Post Processing\PostProcessing.cs" />
-     <Compile Include="Assets\Stranger in the Q\Post Processing\SceneViewFilter.cs" />
-     <None Include="Assets\Stranger in the Q\Post Processing\DistanceFunctions.cginc" />
-     <None Include="Assets\Stranger in the Q\Post Processing\DistanceBooleanOperations.cginc" />
-     <None Include="Assets\Stranger in the Q\Post Processing\TextureNoise.cginc" />
-     <None Include="Assets\Stranger in the Q\Post Processing\ScreenSpaceClouds.shader" />
-     <None Include="Assets\Stranger in the Q\Post Processing\MathNoise.cginc" />
+     <Compile Include="Assets\Stranger in the Q\Post Processing\scripts\PostProcessing.cs" />
+     <Compile Include="Assets\Stranger in the Q\Post Processing\scripts\Raymarcher.cs" />
+     <Compile Include="Assets\Stranger in the Q\Post Processing\scripts\SceneViewFilter.cs" />
+     <Compile Include="Assets\Stranger in the Q\Post Processing\scripts\VolumetricRaytracer.cs" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\parts\PostEffect.cginc" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\parts\DistanceFunctions.cginc" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\parts\DistanceBooleanOperations.cginc" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\parts\TextureNoise.cginc" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\ScreenSpaceRaymarch.shader" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\ScreenSpaceClouds.shader" />
+     <None Include="Assets\Stranger in the Q\Post Processing\shaders\parts\MathNoise.cginc" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

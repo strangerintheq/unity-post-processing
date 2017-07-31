@@ -1,11 +1,9 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
+﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Stranger in the Q\Post Processing\TextureNoise.cginc">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Stranger in the Q\Post Processing\shaders\ScreenSpaceClouds.shader">
     <Files>
-      <File FileName="Assets\Stranger in the Q\Post Processing\ScreenSpaceClouds.shader" Line="84" Column="23" />
-      <File FileName="Assets\Stranger in the Q\Post Processing\PostProcessing.cs" Line="63" Column="9" />
-      <File FileName="Assets\Stranger in the Q\Post Processing\MathNoise.cginc" Line="1" Column="1" />
-      <File FileName="Assets\Stranger in the Q\Post Processing\TextureNoise.cginc" Line="15" Column="1" />
+      <File FileName="Assets\Stranger in the Q\Post Processing\shaders\parts\PostEffect.cginc" Line="8" Column="2" />
+      <File FileName="Assets\Stranger in the Q\Post Processing\shaders\ScreenSpaceClouds.shader" Line="118" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
