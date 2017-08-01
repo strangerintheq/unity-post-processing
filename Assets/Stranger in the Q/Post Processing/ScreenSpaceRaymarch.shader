@@ -17,10 +17,10 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 			//#pragma target 5.0
 
 			#include "UnityCG.cginc"	
-			//#include "./parts/MathNoise.cginc"
-			//#include "./parts/TextureNoise.cginc"
-			#include "./parts/DistanceBooleanOperations.cginc"
-			#include "./parts/DistanceFunctions.cginc"
+			//#include "MathNoise.cginc"
+			//#include "TextureNoise.cginc"
+			#include "DistanceBooleanOperations.cginc"
+			#include "DistanceFunctions.cginc"
 
 			uniform float4x4 _CameraInvViewMatrix;
 			uniform float4x4 _FrustumCornersES;
@@ -84,7 +84,7 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 					float d;
 					if (type == 1) d = sdBox(p - position, scale);
 					if (type == 2) d = sdEllipsoid(p - position, scale);
-					result = smoothMinimumPolynomial(result, d, 0.1);
+					result = smoothMinimumPolynomial(result, d, 0.4);
 				}
 				return result;
 			}
@@ -98,10 +98,9 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 				return normalize(nor);
 			}
 
-			float4 raymarch(float3 rayOrigin, float3 rayDirection, float depth) {
-				float4 result = float4(0, 0, 0, 0);
+			fixed3 raymarch(float3 rayOrigin, float3 rayDirection, float depth, float3 color) {
 				const int maxSteps = 128;
-				const float maxDistance = 30;
+				const float maxDistance = 100;
 				const float epsilon = 0.001;
 				float t = 0; // current distance traveled along ray
 				for (int i = 0; i < maxSteps; ++i) {
@@ -109,41 +108,22 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 					float3 p = rayOrigin + rayDirection * t;
 					float d = map(p);
 					if (d < epsilon) {
-						result.xyz = p.xyz;
-						result.w = 1;
-						break;
-						//return fixed4(fixed3(1,1,1)*dot(-_LightDir.xyz, calcNormal(p)), 1);
+						return fixed4(fixed3(1,1,1)*dot(-_LightDir.xyz, calcNormal(p)), 1);
 					}
 					t += d;
 				}
-				return result;
+				return color;
 			}
 
 			float4 frag (v2f i) : SV_Target { 
-
-
-				float depth = LinearEyeDepth(tex2D(_CameraDepthTexture, i.uv).r);
-				depth *= length(i.ray);
-
-				fixed3 c = tex2D(_MainTex, i.uv);
-
-				// scene
-				float3 ro = _CameraWS;
 				float3 rd = normalize(i.ray.xyz);
-				float4 scene = raymarch(ro, rd, depth);
-				if (scene.w != 0) {
-					c = fixed3(1, 1, 1) * dot(-_LightDir.xyz, calcNormal(scene));
-				}
-
-				// shadow
-				ro += depth;
-				//rd =_LightDir;
-				float4 shadow = raymarch(ro, rd, 1000000);
-				if (shadow.w != 0) {
-					c = fixed3(0.5, 0.5, 0.5);
-				}
-
-				return fixed4(c, 1);
+				float3 ro = _CameraWS;
+				float2 duv = i.uv;
+				fixUV(duv);
+				fixed3 color = tex2D(_MainTex, i.uv);
+				float depth = LinearEyeDepth(tex2D(_CameraDepthTexture, duv).r);
+				depth *= length(i.ray);
+				return fixed4(raymarch(ro, rd, depth, color), 1);
 			}
 
 			ENDCG
