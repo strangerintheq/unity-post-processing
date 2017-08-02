@@ -100,8 +100,8 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 
 			float4 raymarch(float3 rayOrigin, float3 rayDirection, float depth) {
 				float4 result = float4(0, 0, 0, 0);
-				const int maxSteps = 128;
-				const float maxDistance = 30;
+				const int maxSteps = 256;
+				const float maxDistance = 50;
 				const float epsilon = 0.001;
 				float t = 0; // current distance traveled along ray
 				for (int i = 0; i < maxSteps; ++i) {
@@ -110,38 +110,58 @@ Shader "StrangerintheQ/ScreenSpaceRaymarch" {
 					float d = map(p);
 					if (d < epsilon) {
 						result.xyz = p.xyz;
-						result.w = 1;
+						result.w = 1; // id
 						break;
-						//return fixed4(fixed3(1,1,1)*dot(-_LightDir.xyz, calcNormal(p)), 1);
 					}
 					t += d;
 				}
 				return result;
 			}
 
+			// http://www.iquilezles.org/www/articles/rmshadows/rmshadows.htm
+			float softshadow(float3 ro,float3 rd, float mint, float maxt, float k){
+			    float res = 1.0;
+			    for(float t = mint; t < maxt;) {
+			        float h = map(ro + rd * t);
+			        if (h < 0.001) return 1;			        
+			        res.x = min(res.x, k * h / t);
+			        t += h;
+			    }
+			    return 1 - res;
+			}
+
+
+			float3 GetUV(float3 position) {
+				 float4 pVP = mul(float4(position, 1.0f), UNITY_MATRIX_VP);
+				 pVP.xy = float2(0.5f, 0.5f) + float2(0.5f, -0.5f) * pVP.xy / pVP.w;
+				 return float3(pVP.xy, pVP.z / pVP.w);
+			}
+
+
 			float4 frag (v2f i) : SV_Target { 
 
-
-				float depth = LinearEyeDepth(tex2D(_CameraDepthTexture, i.uv).r);
-				depth *= length(i.ray);
-
 				fixed3 c = tex2D(_MainTex, i.uv);
+				float depth = LinearEyeDepth(tex2D(_CameraDepthTexture, i.uv).r) * length(i.ray);
+				float3 ro; // ray origin
+				float3 rd; // ray direction
 
-				// scene
-				float3 ro = _CameraWS;
-				float3 rd = normalize(i.ray.xyz);
+				// scene objects
+				ro = _CameraWS;
+				rd = normalize(i.ray.xyz);
 				float4 scene = raymarch(ro, rd, depth);
+				float3 sceneNormal = calcNormal(scene);
 				if (scene.w != 0) {
-					c = fixed3(1, 1, 1) * dot(-_LightDir.xyz, calcNormal(scene));
+					c = fixed3(1, 1, 1) * dot(-_LightDir.xyz, sceneNormal);
+					depth = length(_CameraWS.xyz - scene.xyz);
 				}
+
 
 				// shadow
-				ro += depth;
-				//rd =_LightDir;
-				float4 shadow = raymarch(ro, rd, 1000000);
-				if (shadow.w != 0) {
-					c = fixed3(0.5, 0.5, 0.5);
-				}
+				ro = _CameraWS + normalize(i.ray.xyz)*depth;
+				rd = -_LightDir;
+				c -= softshadow(ro, rd, 0.01, 50, 16) * 0.7;
+
+
 
 				return fixed4(c, 1);
 			}
